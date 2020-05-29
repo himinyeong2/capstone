@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="description" content="">
+ <meta name="author" content="">
+
+ <title>Sign up</title>
+
+ <!-- Bootstrap core CSS -->
+ <link type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+ <!-- Custom styles for this template -->
+ <link type="text/css" href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+
+</head>
+
+<body class="header-iframe-bg" >
+
+ <div class="col-lg-12 text-center">
+  <div class="registerbox">
+   <div class="signup-bg">
+    <input class="inf-area" type="text" id="userName" name="userName" maxlength="20" placeholder="User name" />
+    <br />
+
+    <a class="chk_btn text-bbbbbb" id="userId_chk" href="#" for="userId_chk" >duplicate check</a><br />
+
+    <input class="inf-area chk-inf-area" type="text" id="userId" name="userId" maxlength="20" placeholder="User ID" />
+    <br />
+
+    <a class="chk_btn text-bbbbbb" id="userEmail_chk" href="#" for="userEmail_chk" >duplicate check</a><br />
+    
+    <input class="inf-area chk-inf-area" type="email" id="userEmail" name="userEmail" autocomplete="off" placeholder="User e-mail" /><br />
+
+    <input class="inf-area" type="password" id="userPw" name="userPw" maxlength="20" autocomplete="off" placeholder="password" /><br />
+
+    <input class="inf-area" type="password" id="userPwCheck" name="userPwCheck" maxlength="20" autocomplete="off" placeholder="confirm password" /><br />
+    <br />
+    <div class="btnwrap">
+     <input class="smt_btn" id="signup_btn" type="button" value="Sign up" /><br /><br />
+    </div>
+
+    <div class="search">
+     <span class="text-bbbbbb">Forgot your ID/PW?</span>
+     <a class="text-bbbbbb" href="find_idpw.html" target="_parent"
+>Find ID/PW</a>
+    </div>
+
+    <div>
+     <a class="back-btn" href="{{url_for('home_header')}}" onclick="chg_if_bg_def()" >back</a>
+     <br />
+    </div>
+   </div>
+  </div>
+
+ </div>
+
+ <!-- Bootstrap core JavaScript -->
+ <script type="text/javascript" src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+ <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+ <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+
+</html>

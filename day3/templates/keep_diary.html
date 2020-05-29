@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="description" content="">
+ <meta name="author" content="">
+
+ <title>Diary</title>
+
+ <!-- Bootstrap core CSS -->
+ <link type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+ <!-- Custom styles for this template -->
+ <link type="text/css" href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+
+</head>
+
+
+<body class="bg-f2f2f2 text-dimgray">
+
+ <!-- Navigation -->
+ <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+   <a class="navbar-brand" href="#"><img class="nav-logo" src="{{url_for('static', filename='img/logo_img/logo.png')}}" alt="" /></a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+     <li class="nav-item">
+      <a class="nav-link page-nav-link" id="logout_btn" href="{{url_for('logout')}}">Log out</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </nav>
+
+ <div class="content-bg">
+  <div class="text-center">
+   <img class="diary-title-img mb-4" src="{{url_for('static', filename='img/diary_title.png')}}" alt="" />
+  </div>
+
+  <div class="text-center">
+   <textarea class="txt-content" id="diarycontent"></textarea>
+  </div>
+
+  <div class="page-btn">
+   <input class="edit_btn" id="diary_edit_btn" type="button" value="edit">
+   <input class="del_btn" id="diary_del_btn" type="button" value="delete">
+   <input class="sv_btn" id="diary_sv_btn" type="button" value="save">
+   <a href="{{url_for('calendar')}}">back</a>
+  </div>
+ </div>
+
+ <!-- Bootstrap core JavaScript -->
+ <script type="text/javascript" src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+ <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+ <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+</body></html>
