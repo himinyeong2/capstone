@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="description" content="">
+ <meta name="author" content="">
+
+ <title>Find pw</title>
+
+ <!-- Bootstrap core CSS -->
+ <link type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+ <!-- Custom styles for this template -->
+ <link type="text/css" href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+
+</head>
+
+
+
+<body class="iframe-bg">
+
+ <div class="col-lg-12 text-center">
+  <div class="find-bg pt-1">
+   <p class="fg-title"> Forgot your pw? </p>
+   <div class="mt-4">
+    <input class="inf-area" type="text" id="find_userId" name="find_userId" maxlength="20" placeholder="ID" />
+    <br />
+    <br />
+
+    <input class="inf-area" type="text" id="find_userEmail" name="find_userEmail" maxlength="20" placeholder="e-mail address" />
+    <br />
+    <br />
+
+    <div class="btnwrap">
+     <input class="smt_btn" id="find_pw_btn" type="button" value="Find your pw" onclick="al_find()" />
+    </div>
+
+    <div class="mt-2 find_href">
+     <a href="{{url_for('find_id')}}">forgot your id?</a>
+     <br />
+     <br />
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <!-- Bootstrap core JavaScript -->
+ <script type="text/javascript" src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+ <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+ <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+</body></html>
+

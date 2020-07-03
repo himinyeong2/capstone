@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <meta name="description" content="">
+ <meta name="author" content="">
+
+ <title>Calendar</title>
+
+ <!-- Bootstrap core CSS -->
+ <link type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+ <!-- Custom styles for this template -->
+ <link type="text/css" href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+</head>
+
+<body class="bg-primary">
+
+ <!-- Navigation -->
+ <nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+
+   <a class="navbar-brand" href="#"><img class="nav-logo" src="{{url_for('static', filename='img/logo_img/logo.png')}}" alt="" /></a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+     <li class="nav-item">
+      <a class="nav-link page-nav-link text-bbbbbb" href="{{url_for('logout')}}">Log out</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </nav>
+
+
+ <div class="container">
+  <br />
+  <div>
+   <table id="calendar" border="3" align="center" style="border-color:#3333FF ">
+    <tr>
+     <!-- label은 마우스로 클릭을 편하게 해줌 -->
+     <td class="month-cell"><label>
+       < </label>
+     </td>
+     <td class="month-cell" align="center" id="tbCalendarYM" colspan="5">
+      yyyy m</td>
+     <td class="month-cell"><label>>
+      </label></td>
+    </tr>
+    <tr>
+     <td class="week" style="color:#F79DC2">Sun</td>
+     <td class="week">Mon</td>
+     <td class="week">Tue</td>
+     <td class="week">Wed</td>
+     <td class="week">Thu</td>
+     <td class="week">Fri</td>
+     <td class="week" style="color:skyblue">Sat</td>
+    </tr>
+   </table>
+  </div>
+
+  <!-- 모달 영역 -->
+  <div id="modalBox" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+     </div>
+
+     <div class="select text-center">
+
+      <a href="#" class="select-opt bg-f2f2f2 text-dimgray" id="diary_select">하루의 마무리</a>
+      <a href="#" class="select-opt bg-f2f2f2 text-dimgray" id="plan_select">하루의 시작</a>
+     </div>
+    </div>
+   </div>
+  </div>
+<!-- Footer -->
+  <footer class="lead py-5">
+   <div class="container">
+    <p class="m-0 text-center text-bbbbbb"><br /><br /><br /><br /><br />데이스피릿, 세종대학교 대한민국<br />
+     team 7 think big: 한지원 라수빈 이민영 맹지원<br />
+     email: wldnjs20725@naver.com<br />
+     COPYRIGHT BY 2020 Daysprit<br /></p>
+   </div>
+   <!-- /.container -->
+  </footer>
+  <!-- Bootstrap core JavaScrit -->
+  <script type="text/javascript" src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+
+  <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+
+  <script>
+          var diary_list=new Array();
+    {% for obj in data_list %}
+        var data = new Object();
+       data.date='{{obj.date}}';
+        data.img = '{{obj.img}}';
+        diary_list.push(data);
+    {% endfor %}
+    var jsonData = JSON.stringify(diary_list);
+   buildCalendar(jsonData);
+   get_modal();
+     
+      $(document).ready(function() {
+    var btn = document.getElementsByClassName('month-cell');
+
+    btn[0].addEventListener('click', function() {
+     prevCalendar(jsonData);
+    });
+
+    btn[2].addEventListener('click', function() {
+     nextCalendar(jsonData);
+    });
+   });
+
+  </script>
+</body></html>

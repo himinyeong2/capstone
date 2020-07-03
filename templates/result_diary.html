@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Result</title>
+
+    <!-- Bootstrap core CSS -->
+    <link type="text/css" href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link type="text/css" href="static/css/style.css" rel="stylesheet">
+
+
+</head>
+
+
+<body class="bg-f2f2f2 text-dimgray">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img class="nav-logo" src="static/img/logo_img/logo.png" alt="" /></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-nav-link" id="logout_btn" href="#">Log out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 추가, 이미지 삽입 -->
+    <div class="text-center">
+        <img class="diary-title-img mb-4" src="static/img/diary_title.png" alt="" />
+    </div>
+
+    <div class="content-bg text-center text-dimgray">
+        <!-- 변경, class 중에서 mt-5 -->
+        <div class="result-content align-middle mt-5">
+            <!-- 변경, 결과 삽입 부분-->
+            <div class="m-auto" id="pie-chart"></div>
+            <!-- -->
+        </div>
+
+        <div class="page-btn">
+            <div class="float-right">
+                <a href="{{url_for('calendar')}}">back</a>
+            </div>
+        </div>
+    </div>
+<!-- Footer -->
+ <footer class="lead py-5">
+  <div class="container">
+   <p class="m-0 text-center text-dimgray"><br /><br /><br /><br /><br />데이스피릿, 세종대학교 대한민국<br />
+team 7 think big: 한지원 라수빈 이민영 맹지원<br />
+email: wldnjs20725@naver.com<br />
+COPYRIGHT BY 2020 Daysprit<br /></p>
+  </div>
+  <!-- /.container -->
+ </footer>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.bundle.min.js"></script>
+
+
+    <script type="text/javascript" src="static/js/script.js"></script>
+
+    <!-- 추가, js 코드 -->
+    <script type="text/javascript" src="static/js/Highcharts-8.1.0/highcharts.js"></script>
+    <script type="text/javascript" src="static/js/Highcharts-8.1.0/highcharts-more.js"></script>
+
+    <script>
+        //data_list 받기
+
+        
+        var chartdata=new Array();
+        {% for obj in data_list %}
+        var data = new Object();
+         data.name='{{obj.name}}';
+         {% if(obj.percent!=0.0) %}
+            data.y = {{obj.percent}};
+         {%else%}
+            data.y=null;
+        {% endif %}
+         if(data.name=='사랑/황홀/즐거움'){
+             data.color = '#FFA679';
+         }
+         else if(data.name=='기쁨/낙천/기대'){
+             data.color = '#FDF58B';
+         }
+         else if(data.name=='평온/관심/수용'){
+             data.color = '#E5FBFF';
+         }
+        else if(data.name=='불안/슬픔/걱정'){
+             data.color = '#8497B0';
+         }else{
+             data.color='#3B485B'
+         }
+         chartdata.push(data);
+         {% endfor %}
+         
+        
+          
+        // Build the chart
+        if (window.screen.width >= 768) {
+            Highcharts.chart('pie-chart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ' '
+                },
+                tooltip: {
+                    pointFormat: '{point.percentage:.1f}%</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: '%'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<p>{point.percentage:.1f} %</p>',
+                            distance: -50
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    colorByPoint: true,
+                    data: chartdata
+                }],
+                credits: {
+                    enabled: false
+                }
+            });
+        } else {
+            Highcharts.chart('pie-chart', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ' '
+                },
+                tooltip: {
+                    pointFormat: '{point.percentage:.1f}%</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: '%'
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    colorByPoint: true,
+                    data: chartdata
+                }],
+                credits: {
+                    enabled: false
+                }
+            });
+        }
+
+    </script>
+
+
+</body>
+
+</html>
